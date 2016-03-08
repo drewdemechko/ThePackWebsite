@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http.Internal;
 using InspirationSite.Models;
+using Microsoft.AspNet.Http;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,7 +42,8 @@ namespace InspirationSite.Controllers
 
                     if (validate != null)
                     {
-                        TempData["Username"] = validate.Username.ToString();
+                        //TempData["Username"] = validate.Username.ToString();
+                        HttpContext.Session.SetString("Username", validate.Username.ToString());
                         return RedirectToAction("Login");
                         //TempData["Authority"] = validate.Authority.ToString(); Stores authority level of user account
                     }

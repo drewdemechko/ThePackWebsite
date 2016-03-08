@@ -30,6 +30,8 @@ namespace InspirationSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession();
+            services.AddCaching();
 
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -42,6 +44,7 @@ namespace InspirationSite
         {
             //MUST ADD TO BAREBONES PROJECT as well as "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final" dependency in project.json
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes => {
                 routes.MapRoute(

@@ -1,4 +1,5 @@
-﻿@{ViewBag.Title = "Login";}
+﻿@model InspirationSite.Models.PackMembers
+@{ViewBag.Title = "Login";}
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
@@ -18,25 +19,32 @@
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
         <div class="col-md-8">
-            <form name="LoginForm" id="LoginForm" novalidate>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Username:</label>
-                        <input type="text" class="form-control" id="username" required data-validation-required-message="Please enter your name.">
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Password:</label>
-                        <input type="tel" class="form-control" id="password" required data-validation-required-message="Please enter your phone number.">
-                    </div>
-                </div>
-                <a style="float:right" href="/Account/Register">Don't Have an Account - Register?</a><br />
-                <div id="success"></div>
-                <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                
+                <table>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Username)<b>: </b></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.TextBoxFor(model => model.Username, null, new { @class = "form-control", size="400" })</td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Password)<b>: </b></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.PasswordFor(model => model.Password, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr></tr>
+                </table>
+                <br />
+                    <a style="float:right" href="/Account/Register">Don't Have an Account - Register?</a>
+                    <input type="submit" class="btn btn-primary" value="Login">
+            }
         </div>
     </div>
     <!-- /.row -->

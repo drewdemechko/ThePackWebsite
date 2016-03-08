@@ -23,13 +23,13 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
-                
-                <table>
+
+                    <table>
                         <tr>
                             <td>@Html.LabelFor(model => model.Username)<b>: </b></td>
                         </tr>
                         <tr>
-                            <td>@Html.TextBoxFor(model => model.Username, null, new { @class = "form-control", size="400" })</td>
+                            <td>@Html.TextBoxFor(model => model.Username, new { @class = "form-control", size = "400" })</td>
                         </tr>
                         <tr></tr>
                         <tr></tr>
@@ -40,11 +40,11 @@
                             <td>@Html.PasswordFor(model => model.Password, new { @class = "form-control" })</td>
                         </tr>
                         <tr></tr>
-                </table>
-                <br />
+                    </table>
+                    <br />
                     <a style="float:right" href="/Account/Register">Don't Have an Account - Register?</a>
                     <input type="submit" class="btn btn-primary" value="Login">
-            }
+                    }
         </div>
     </div>
     <!-- /.row -->

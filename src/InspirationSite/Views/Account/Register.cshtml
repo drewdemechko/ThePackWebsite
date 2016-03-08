@@ -1,4 +1,5 @@
-﻿@{ViewBag.Title = "Register";}
+﻿@model InspirationSite.Models.PackMembers
+@{ViewBag.Title = "Register";}
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
@@ -18,55 +19,73 @@
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
         <div class="col-md-8">
-            <form name="RegisterForm" id="RegisterForm" novalidate>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Username:</label>
-                        <input type="text" class="form-control" id="username" required data-validation-required-message="Please enter your username.">
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Password:</label>
-                        <input type="password" class="form-control" id="password" required data-validation-required-message="Please enter your password.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Name:</label>
-                        <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>ImageURL:</label>
-                        <input type="text" class="form-control" id="imageurl">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>FacebookURL:</label>
-                        <input type="text" class="form-control" id="facebookurl">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>TwitterURL:</label>
-                        <input type="text" class="form-control" id="twitterurl">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Bio:</label>
-                        <textarea rows="10" cols="100" class="form-control" id="bio" required data-validation-required-message="Please enter a short biography about yourself." maxlength="999" style="resize:none"></textarea>
-                    </div>
-                </div>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.Username)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.Username, new { @class = "form-control", size = "400" })</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.Password)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.Password, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.Name)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.ImageURL)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.ImageURL, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.FacebookURL)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.FacebookURL, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.TwitterURL)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.TwitterURL, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.Bio)<b>: </b></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.TextAreaFor(model => model.Bio, new { @class = "form-control", style = "resize:none;", rows = "10"})</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                </table>
+                <br />
                 <a style="float:right" href="/Login">Already Have an Account - Login?</a><br/>
-                <div id="success"></div>
-                <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
+                <input type="submit" class="btn btn-primary" value="Register">
+            }
         </div>
     </div>
     <!-- /.row -->

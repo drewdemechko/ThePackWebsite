@@ -35,19 +35,16 @@ namespace InspirationSite.Controllers
         {
             if(ModelState.IsValid)
             {
-                //using (_context())//AppDbContext context = new AppDbContext())
-                //{
                     var validate = _context.PackMembers.Where(model => model.Username.Equals(packMember.Username) &&
                                     model.Password.Equals(packMember.Password)).FirstOrDefault();
 
                     if (validate != null)
                     {
-                        //TempData["Username"] = validate.Username.ToString();
                         HttpContext.Session.SetString("Username", validate.Username.ToString());
                         return RedirectToAction("Login");
-                        //TempData["Authority"] = validate.Authority.ToString(); Stores authority level of user account
+                        //HttpContext.Session.SetString("Authority", validate.Authority.ToString()); 
+                            //Stores authority level of user account
                     }
-               // }
             }
             return View("Register");
         }

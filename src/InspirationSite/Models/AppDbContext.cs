@@ -24,7 +24,7 @@ namespace InspirationSite.Models
         }
 
         public DbSet<BlogPosts> BlogPosts { get; set; }
-        public DbSet<PackMembers> PackMembers { get; set; }
+        public DbSet<PackMembers> PackMember { get; set; }
         public DbSet<Photos> Photos { get; set; }
         public DbSet<Videos> Videos { get; set; }
     }

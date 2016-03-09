@@ -35,13 +35,14 @@ namespace InspirationSite.Controllers
         {
             if(ModelState.IsValid)
             {
-                    var validate = _context.PackMembers.Where(model => model.Username.Equals(packMember.Username) &&
+                    //Checks for valid login information
+                    var validated = _context.PackMember.Where(model => model.Username.Equals(packMember.Username) &&
                                     model.Password.Equals(packMember.Password)).FirstOrDefault();
 
-                    if (validate != null)
+                    if (validated != null)
                     {
-                        HttpContext.Session.SetString("Username", validate.Username.ToString());
-                        return RedirectToAction("Login");
+                        HttpContext.Session.SetString("Username", validated.Username.ToString());
+                        return RedirectToAction("Index","Home");
                         //HttpContext.Session.SetString("Authority", validate.Authority.ToString()); 
                             //Stores authority level of user account
                     }
@@ -56,21 +57,34 @@ namespace InspirationSite.Controllers
             return View();
         }
 
+        [Route("Account/Register")]
         [HttpPost]
-        public IActionResult Register(string username, string password, string name, string imageUrl,
-            string facebookUrl, string twitterUrl, string bio)
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(PackMembers packMember)
         {
 
             if (ModelState.IsValid)
             {
-                _context.PackMembers.Add(new PackMembers { Name = username, Password = "test" });
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                var currentPackMember = _context.PackMember.Where(model => model.Username.Equals(packMember.Username)).FirstOrDefault();
+
+                //If current PackMember username does not currently exist
+                if (currentPackMember == null)
+                {
+                    _context.PackMember.Add(packMember);
+                    _context.SaveChanges();
+                    return RedirectToAction("Login");
+                }
             }
             return View();
 
             //return View(user);
             //return Content("worked");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("Username", "");
+            return RedirectToAction("Index","Home");
         }
     }
 }

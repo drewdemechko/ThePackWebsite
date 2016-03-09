@@ -44,7 +44,7 @@
                         <li>
                             <a href="/Contact">Contact</a>
                         </li>
-                        @if (Context.Session.GetString("Username") == null) {
+                        @if ((Context.Session.GetString("Username") == null) || (Context.Session.GetString("Username") == "")) {
                         <li>
                             <a href="/Login">Login</a>
                         </li>
@@ -52,7 +52,7 @@
                         else
                         {
                         <li>
-                            <a href="/Logout">Logout</a> <!--Add logout functionality to clear sessionId in AccountController-->
+                            @Html.ActionLink("Logout","Logout","Account") <!--Add logout functionality to clear sessionId in AccountController-->
                         </li>
                         }
                     </ul>

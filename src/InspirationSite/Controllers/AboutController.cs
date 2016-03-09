@@ -19,7 +19,7 @@ namespace InspirationSite.Controllers
         [Route("OurTeam")]
         public IActionResult OurTeam()
         {
-            return View(_context.PackMembers.ToList());
+            return View(_context.PackMember.ToList());
         }
 
         // GET: About/Details/5
@@ -30,7 +30,7 @@ namespace InspirationSite.Controllers
                 return HttpNotFound();
             }
 
-            PackMembers packMembers = _context.PackMembers.Single(m => m.MemberId == id);
+            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
             if (packMembers == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace InspirationSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.PackMembers.Add(packMembers);
+                _context.PackMember.Add(packMembers);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace InspirationSite.Controllers
                 return HttpNotFound();
             }
 
-            PackMembers packMembers = _context.PackMembers.Single(m => m.MemberId == id);
+            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
             if (packMembers == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace InspirationSite.Controllers
                 return HttpNotFound();
             }
 
-            PackMembers packMembers = _context.PackMembers.Single(m => m.MemberId == id);
+            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
             if (packMembers == null)
             {
                 return HttpNotFound();
@@ -112,8 +112,8 @@ namespace InspirationSite.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            PackMembers packMembers = _context.PackMembers.Single(m => m.MemberId == id);
-            _context.PackMembers.Remove(packMembers);
+            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
+            _context.PackMember.Remove(packMembers);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -30,29 +30,29 @@
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/OurTeam">About</a>
+                            @Html.ActionLink("Meet Our Team", "OurTeam", "About")
                         </li>
                         <li>
-                            <a href="/Photos">Photos</a>
+                            @Html.ActionLink("Photos", "Album", "Photos")
                         </li>
                         <li>
-                            <a href="/Videos">Videos</a>
+                            @Html.ActionLink("Videos", "Vlogs", "Videos")
                         </li>
                         <li>
-                            <a href="/Blog">Blog</a>
+                            @Html.ActionLink("Blog", "Entries", "Blog")
                         </li>
                         <li>
-                            <a href="/Contact">Contact</a>
+                            @Html.ActionLink("Contact","ContactUs","Contact")
                         </li>
                         @if ((Context.Session.GetString("Username") == null) || (Context.Session.GetString("Username") == "")) {
                         <li>
-                            <a href="/Login">Login</a>
+                            @Html.ActionLink("Login", "Login", "Account")
                         </li>
                         }
                         else
                         {
                         <li>
-                            @Html.ActionLink("Logout","Logout","Account") <!--Add logout functionality to clear sessionId in AccountController-->
+                            @Html.ActionLink("Logout","Logout","Account")
                         </li>
                         }
                     </ul>

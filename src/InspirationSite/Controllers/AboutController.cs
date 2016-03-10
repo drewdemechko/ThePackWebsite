@@ -93,18 +93,15 @@ namespace InspirationSite.Controllers
         [ActionName("Delete")]
         public IActionResult Delete(int? id)
         {
-            if (id == null)
+            //Deletes PackMember Account
+            if (ModelState.IsValid)
             {
-                return HttpNotFound();
+                PackMembers packMemberToRemove = _context.PackMember.Single(m => m.MemberId == id);
+                _context.Remove(packMemberToRemove);
+                _context.SaveChanges();
             }
 
-            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
-            if (packMembers == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(packMembers);
+            return RedirectToAction("OurTeam");
         }
 
         // POST: About/Delete/5

@@ -7,13 +7,16 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Register
+                Edit PackMember
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    @Html.ActionLink("Home", "Index", "Home")
                 </li>
-                <li class="active">Register</li>
+                <li>
+                    @Html.ActionLink("Our Team","OurTeam","About")
+                </li>
+                <li class="active">Edit</li>
             </ol>
         </div>
     </div>
@@ -21,7 +24,6 @@
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
         <div class="col-md-8">
-            
             @using (Html.BeginForm("Edit", "About", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
@@ -86,8 +88,8 @@
                     <tr></tr>
                 </table>
                 <br />
-                <a style="float:right" href="/Login">Already Have an Account - Login?</a><br />
-                <input type="submit" class="btn btn-primary" value="Register">
+                <input type="submit" class="btn btn-primary" value="Save">
+                @Html.ActionLink("Cancel", "OurTeam", "About", null ,new { @class = "btn btn-primary"});
             }
         </div>
     </div>

@@ -22,45 +22,7 @@ namespace InspirationSite.Controllers
             return View(_context.PackMember.ToList());
         }
 
-        // GET: About/Details/5
-        public IActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
-
-            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
-            if (packMembers == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(packMembers);
-        }
-
-        // GET: About/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: About/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(PackMembers packMembers)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.PackMember.Add(packMembers);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(packMembers);
-        }
-
         // GET: About/Edit/5
-        [ActionName("Edit")]
         [HttpGet]
         public IActionResult Edit(int? id)
         {

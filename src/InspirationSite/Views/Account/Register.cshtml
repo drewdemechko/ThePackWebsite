@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li class="active">Register</li>
             </ol>
@@ -83,7 +83,7 @@
                     <tr></tr>
                 </table>
                 <br />
-                <a style="float:right" href="/Login">Already Have an Account - Login?</a><br/>
+                @Html.ActionLink("I Already Have an Account", "Login", "Account", null, new { style= "float:right;" } )
                 <input type="submit" class="btn btn-primary" value="Register">
             }
         </div>

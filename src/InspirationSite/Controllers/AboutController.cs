@@ -60,33 +60,33 @@ namespace InspirationSite.Controllers
         }
 
         // GET: About/Edit/5
+        [ActionName("Edit")]
+        [HttpGet]
         public IActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
+            PackMembers packMember = _context.PackMember.Single(m => m.MemberId == id);
 
-            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
-            if (packMembers == null)
+            if (packMember != null)
             {
-                return HttpNotFound();
+                return View(packMember);
             }
-            return View(packMembers);
+            return RedirectToAction("OurTeam");
         }
 
-        // POST: About/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PackMembers packMembers)
+        public IActionResult Edit(int? id, PackMembers packMember)//[Bind(include:"MemberId,Username,Password,Name,ImageURL,FacebookURL,TwitterURL,Bio")] PackMembers packMember)
         {
+            //Edits a PackMembers account based on input from administrator
+            var currentPackMember = _context.PackMember.Where(model => model.MemberId.Equals(id)).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
-                _context.Update(packMembers);
+                currentPackMember.Bio = packMember.Bio;
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("OurTeam");
             }
-            return View(packMembers);
+            return RedirectToAction("Index","Home");
         }
 
         // GET: About/Delete/5
@@ -102,17 +102,6 @@ namespace InspirationSite.Controllers
             }
 
             return RedirectToAction("OurTeam");
-        }
-
-        // POST: About/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            PackMembers packMembers = _context.PackMember.Single(m => m.MemberId == id);
-            _context.PackMember.Remove(packMembers);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
         }
     }
 }

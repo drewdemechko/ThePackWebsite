@@ -76,9 +76,6 @@ namespace InspirationSite.Controllers
                 }
             }
             return View();
-
-            //return View(user);
-            //return Content("worked");
         }
 
         public IActionResult Logout()

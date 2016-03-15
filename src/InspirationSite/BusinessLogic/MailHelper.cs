@@ -12,17 +12,20 @@ namespace InspirationSite.BusinessLogic
         MailMessage mail;
         SmtpClient smtpClient;
 
-        public MailHelper(string toAddress, string fromAddress, string messageSubject, string messageBody)
+        public MailHelper(string toAddress, string fromAddress, string messageSubject, string messageBody, string senderName, string senderPhone, string senderEmail)
         {
             //Set up Email
             mail = new System.Net.Mail.MailMessage();
             mail.To.Add(toAddress);
-            mail.From = new MailAddress(fromAddress,"Contact The Pvck", System.Text.Encoding.UTF8);
+            mail.From = new MailAddress(fromAddress,"Sent from thepvck.com", System.Text.Encoding.UTF8);
             mail.Subject = messageSubject;
             mail.SubjectEncoding = System.Text.Encoding.UTF8;
-            mail.Body = messageBody;
+
+            //Modified body, html encoded
+            mail.Body = messageBody + "<br><br><br><br>Message Sent From,<br><br>" + senderName + "<br><br>" + senderPhone + "<br><br>" + senderEmail + "<br><br>";
             mail.BodyEncoding = System.Text.Encoding.UTF8;
             mail.IsBodyHtml = true;
+
             mail.Priority = MailPriority.High;
 
             smtpClient = new SmtpClient();

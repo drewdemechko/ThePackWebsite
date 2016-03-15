@@ -1,4 +1,5 @@
-﻿@{ViewBag.Title = "Contact Us";}
+﻿@model InspirationSite.Models.ContactMessage
+@{ViewBag.Title = "Contact Us";}
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
@@ -61,37 +62,46 @@
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
         <div class="col-md-8">
+            @using (Html.BeginForm("ContactUs", "Contact", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
             <h3>Send us a Message</h3>
-            <form name="sentMessage" id="contactForm" novalidate>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Full Name:</label>
-                        <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+                        @Html.TextBoxFor(m => m.FullName, null, new { @class = "form-control", size = "400" })
                         <p class="help-block"></p>
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Phone Number:</label>
-                        <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+                        @Html.TextBoxFor(m => m.PhoneNumber, null, new { @class = "form-control" } )
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Email Address:</label>
-                        <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+                        @Html.TextBoxFor(m => m.EmailAddress, null, new { @class = "form-control" } )
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Subject:</label>
+                        @Html.TextBoxFor(m => m.Subject, null, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Message:</label>
-                        <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", style = "resize:none;", rows = "10" })
                     </div>
                 </div>
                 <div id="success"></div>
                 <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
+                <input type="submit" class="btn btn-primary" value="Send Message">
+                }
         </div>
     </div>
     <!-- /.row -->

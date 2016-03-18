@@ -1,4 +1,5 @@
 ﻿@{ViewBag.Title = "Our Album";}
+@using Microsoft.AspNet.Http;
 
     <!-- Page Content -->
 <div class="container">
@@ -10,10 +11,16 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li class="active">Photo Album</li>
             </ol>
+            @if (Context.Session.GetString("Username") == "drewdemechko")
+            {
+                <div style="float:right;">
+                    @Html.ActionLink("Add Photo", "AddPhoto", "Photos")
+                </div>
+            }
         </div>
     </div>
     <!-- /.row -->

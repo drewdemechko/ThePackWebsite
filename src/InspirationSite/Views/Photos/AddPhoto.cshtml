@@ -1,0 +1,51 @@
+﻿@model InspirationSite.Models.Photos
+@{ ViewBag.Title = "Add Photo"; }
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Contact Us
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Photos", "Album", "Photos")
+                </li>
+                <li class="active">Add Photo</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("AddPhoto", "Photos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <h3>Add a New Photo to the Album</h3>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>ImageURL:</label>
+                        @Html.TextBoxFor(m => m.ImageURL, null, new { @class = "form-control", size = "400" })
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <input type="submit" class="btn btn-primary" value="Add To Album">
+            }
+        </div>
+    </div>
+    <!--To display preview of image with AJAX in future updates-->
+    <div class="row">
+        <div class="col-md-3 img-portfolio" style="float:right;">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-hover" src="http://i447.photobucket.com/albums/qq199/thepvck_admin/Boys_zpsrh0ap2tc.jpg" alt="">
+            </a>
+        </div>
+    </div>
+</div>
+
+

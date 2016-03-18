@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-//Do not place in database
+//Do not store data in database
 namespace InspirationSite.Models
 {
     public class ContactMessage

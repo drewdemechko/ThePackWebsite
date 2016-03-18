@@ -37,7 +37,7 @@ namespace InspirationSite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int? id, PackMembers packMember)//[Bind(include:"MemberId,Username,Password,Name,ImageURL,FacebookURL,TwitterURL,Bio")] PackMembers packMember)
+        public IActionResult Edit(int? id, PackMembers packMember)
         {
             //Edits a PackMembers account based on input from administrator
             var currentPackMember = _context.PackMember.Where(model => model.MemberId.Equals(id)).FirstOrDefault();

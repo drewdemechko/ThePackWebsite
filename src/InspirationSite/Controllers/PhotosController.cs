@@ -11,6 +11,13 @@ namespace InspirationSite.Controllers
 {
     public class PhotosController : Controller
     {
+        private AppDbContext _context;
+
+        public PhotosController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: /<controller>/
         [Route("[Controller]")]
         public IActionResult Album()
@@ -35,6 +42,21 @@ namespace InspirationSite.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddPhoto(Photos photo)
         {
+            DateTime todaysDate = DateTime.Now;
+            todaysDate.ToString("dd MMMM yyyy");
+
+            if (ModelState.IsValid)
+            {
+                var currentPhoto = _context.Photos.Where(model => model.ImageURL.Equals(photo.ImageURL)).FirstOrDefault();
+
+                if(currentPhoto == null)
+                {
+                    photo.InAlbum = true;
+                    photo.DateAdded = todaysDate; //Add current date of addition
+                    _context.Photos.Add(photo);
+                    _context.SaveChanges();
+                }
+            }
             return RedirectToAction("Album");
         }
     }

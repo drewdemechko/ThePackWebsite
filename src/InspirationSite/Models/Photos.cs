@@ -11,9 +11,10 @@ namespace InspirationSite.Models
         [Key]
         public int PhotoId { get; set; }
         //Stores image as bytes
-        public PackMembers PhotoOf { get; set; }
+        //public PackMembers PhotoOf { get; set; }
         public String ImageURL { get; set; }
         public bool InAlbum { get; set; }
         public DateTime DateAdded { get; set; }
+        //public String Description { get; set; }
     }
 }

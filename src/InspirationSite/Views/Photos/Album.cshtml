@@ -1,19 +1,20 @@
-﻿@{ViewBag.Title = "Our Album";}
-@using Microsoft.AspNet.Http;
+﻿@using Microsoft.AspNet.Http;
+@model IEnumerable<InspirationSite.Models.Photos>
+@{ViewBag.Title = "Our Album";}
 
-    <!-- Page Content -->
+<!-- Page Content -->
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Photo Album
+                Photos
             </h1>
             <ol class="breadcrumb">
                 <li>
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
-                <li class="active">Photo Album</li>
+                <li class="active">Photos</li>
             </ol>
             @if (Context.Session.GetString("Username") == "drewdemechko")
             {
@@ -26,76 +27,20 @@
     <!-- /.row -->
     <!-- Projects Row -->
     <div class="row">
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://i447.photobucket.com/albums/qq199/thepvck_admin/Boys_zpsrh0ap2tc.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://i447.photobucket.com/albums/qq199/thepvck_admin/Familybg_zpszdkjh3sn.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://i447.photobucket.com/albums/qq199/thepvck_admin/Main_zpswjjaq2fv.png" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://i447.photobucket.com/albums/qq199/thepvck_admin/Logo_zpszyskxf22.jpg" alt="">
-            </a>
-        </div>
+        @foreach (var photo in Model)
+        {
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="@Html.DisplayFor(modelItem => photo.ImageURL)" alt="">
+                </a>
+                @if (Context.Session.GetString("Username") == "drewdemechko")
+                {
+                    @Html.ActionLink("Delete Photo", "DeletePhoto", new { id = photo.PhotoId })
+                }
+            </div>
+        }
     </div>
-    <!-- /.row -->
-    <!-- Projects Row -->
-    <div class="row">
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-    </div>
-    <!-- /.row -->
-    <!-- Projects Row -->
-    <div class="row">
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-3 img-portfolio">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-            </a>
-        </div>
-    </div>
-    <!-- /.row -->
+
     <hr>
     <!-- Pagination -->
     <div class="row text-center">

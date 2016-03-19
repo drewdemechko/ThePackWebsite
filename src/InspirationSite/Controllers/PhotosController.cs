@@ -22,7 +22,7 @@ namespace InspirationSite.Controllers
         [Route("[Controller]")]
         public IActionResult Album()
         {
-            return View();
+            return View(_context.Photos.ToList());
         }
         [HttpGet]
         [Route("[Controller]/{id?}")]
@@ -56,6 +56,18 @@ namespace InspirationSite.Controllers
                     _context.Photos.Add(photo);
                     _context.SaveChanges();
                 }
+            }
+            return RedirectToAction("Album");
+        }
+
+        [HttpGet]
+        public IActionResult DeletePhoto(int? id)
+        {
+            if(ModelState.IsValid)
+            {
+                Photos photoToRemove = _context.Photos.Single(m => m.PhotoId == id);
+                _context.Remove(photoToRemove);
+                _context.SaveChanges();
             }
             return RedirectToAction("Album");
         }

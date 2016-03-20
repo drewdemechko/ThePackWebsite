@@ -23,67 +23,50 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
-
-                <table>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.Username)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.Username, new { @class = "form-control", size = "400" })</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.Password)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.Password, new { @class = "form-control" })</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.Name)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.ImageURL)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.ImageURL, new { @class = "form-control" })</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.FacebookURL)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.FacebookURL, new { @class = "form-control" })</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.TwitterURL)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(model => model.TwitterURL, new { @class = "form-control" })</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    <tr>
-                        <td>@Html.LabelFor(model => model.Bio)<b>: </b></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextAreaFor(model => model.Bio, new { @class = "form-control", style = "resize:none;", rows = "10"})</td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                </table>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.Username)<b>: </b>
+                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", size = "400" })
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.Password)<b>: </b>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.Name)<b>: </b>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.ImageURL)<b>: </b>
+                        @Html.TextBoxFor(model => model.ImageURL, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.FacebookURL)<b>: </b>
+                        @Html.TextBoxFor(model => model.FacebookURL, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.TwitterURL)<b>: </b>
+                        @Html.TextBoxFor(model => model.TwitterURL, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        @Html.LabelFor(model => model.Bio)<b>: </b>
+                        @Html.TextBoxFor(model => model.Bio, new { @class = "form-control", style = "resize:none;", rows = "10" })
+                    </div>
+                </div>
                 <br />
-                @Html.ActionLink("I Already Have an Account", "Login", "Account", null, new { style= "float:right;" } )
+                @Html.ActionLink("I Already Have an Account", "Login", "Account", null, new { style = "float:right;" })
                 <input type="submit" class="btn btn-primary" value="Register">
             }
         </div>
@@ -98,4 +81,4 @@
             </div>
         </div>
     </footer>
-</div>
+    </div>

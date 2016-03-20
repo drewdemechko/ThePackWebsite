@@ -1,0 +1,48 @@
+﻿@model InspirationSite.Models.Videos
+@{ ViewBag.Title = "Add Video"; }
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Add a New Video
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+                <li>
+                    @Html.ActionLink("Videos", "Vlogs", "Videos")
+                </li>
+                <li class="active">Add Video</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("AddVideo", "Videos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <h3>Add a New Video to the Vlog</h3>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Title:</label>
+                        @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", size = "400" })
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Video URL:</label>
+                        @Html.TextBoxFor(m => m.VideoURL, null, new { @class = "form-control" })
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <input type="submit" class="btn btn-primary" value="Add To Vlog">
+            }
+        </div>
+    </div>
+</div>

@@ -24,6 +24,7 @@ namespace InspirationSite.Controllers
         {
             return View(_context.Photos.ToList());
         }
+
         [HttpGet]
         [Route("[Controller]/{id?}")]
         public IActionResult Photoid(Photos photo)
@@ -43,7 +44,6 @@ namespace InspirationSite.Controllers
         public IActionResult AddPhoto(Photos photo)
         {
             DateTime todaysDate = DateTime.Now;
-            todaysDate.ToString("dd MMMM yyyy");
 
             if (ModelState.IsValid)
             {

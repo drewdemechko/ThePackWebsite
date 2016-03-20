@@ -1,4 +1,6 @@
-﻿@{ViewBag.Title = "Videos";}
+﻿@using Microsoft.AspNet.Http;
+@model IEnumerable<InspirationSite.Models.Videos>
+@{ViewBag.Title = "Videos";}
 
 <!-- Page Content -->
 <div class="container">
@@ -14,17 +16,30 @@
                 </li>
                 <li class="active">Videos</li>
             </ol>
+            @if (Context.Session.GetString("Username") == "drewdemechko")
+            {
+                <div style="float:right;">
+                    @Html.ActionLink("Add Video", "AddVideo", "Videos")
+                </div>
+            }
         </div>
     </div>
     <!-- /.row -->
     <!-- Intro Content -->
+    @foreach (var video in Model)
+    {
     <div class="row" style="text-align:center">
-        <h2>Date Added</h2>
-        <div class="col-lg-12">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/95L0mqHKve4" frameborder="0" allowfullscreen></iframe>
-        </div>
+            <h2>@Html.DisplayFor(modelItem => video.Title)</h2>
+            <div class="col-lg-12">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/@Html.DisplayFor(modelItem => video.VideoURL)" frameborder="0" allowfullscreen></iframe>
+            </div>
+            @if (Context.Session.GetString("Username") == "drewdemechko")
+            {
+                @Html.ActionLink("Delete Video", "DeleteVideo", new { id = video.VideoId })
+            }
     </div>
     <hr>
+    }
     <!-- Footer -->
     <footer>
         <div class="row">

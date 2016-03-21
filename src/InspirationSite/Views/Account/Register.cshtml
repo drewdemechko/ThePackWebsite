@@ -1,5 +1,8 @@
 ﻿@model InspirationSite.Models.PackMembers
 @{ViewBag.Title = "Register";}
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
@@ -70,6 +73,12 @@
                 <input type="submit" class="btn btn-primary" value="Register">
             }
         </div>
+        <!--Displays preview of image URL-->
+        <div class="col-md-3 img-portfolio" style="float:right;">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-hover" id="imagePreview" src="http://placehold.it/750x450" alt="This is not a valid Image URL. Please try the link again.">
+            </a>
+        </div>
     </div>
     <!-- /.row -->
     <hr>
@@ -81,4 +90,10 @@
             </div>
         </div>
     </footer>
-    </div>
+</div>
+<script>
+    $("#ImageURL").blur(function () {
+        var newImageSrc = $("#ImageURL").val();
+        $("#imagePreview").attr("src", newImageSrc);
+    });
+</script>

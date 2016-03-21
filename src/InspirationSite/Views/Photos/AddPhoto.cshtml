@@ -1,5 +1,8 @@
 ﻿@model InspirationSite.Models.Photos
 @{ ViewBag.Title = "Add Photo"; }
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
@@ -37,15 +40,28 @@
                 <input type="submit" class="btn btn-primary" value="Add To Album">
             }
         </div>
-    </div>
-    <!--To display preview of image with AJAX in future updates-->
-    <div class="row">
+        <!--Displays preview of image URL-->
         <div class="col-md-3 img-portfolio" style="float:right;">
             <a href="portfolio-item.html">
-                <img class="img-responsive img-hover" src="http://i447.photobucket.com/albums/qq199/thepvck_admin/Boys_zpsrh0ap2tc.jpg" alt="">
+                <img class="img-responsive img-hover" id="imagePreview" src="http://placehold.it/750x450" alt="This is not a valid Image URL. Please try the link again.">
             </a>
         </div>
     </div>
+    <!-- /.row -->
+    <hr>
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; The PACK 2016</p>
+            </div>
+        </div>
+    </footer>
 </div>
-
+<script>
+    $("#ImageURL").blur(function () {
+        var newImageSrc = $("#ImageURL").val();
+        $("#imagePreview").attr("src", newImageSrc);
+    });
+</script>
 

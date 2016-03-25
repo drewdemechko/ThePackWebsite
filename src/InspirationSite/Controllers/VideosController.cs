@@ -45,9 +45,16 @@ namespace InspirationSite.Controllers
                 if(currentVideo == null)
                 {
                     video.DateAdded = todaysDate;
-                    video.VideoURL = video.VideoURL.Replace("https://www.youtube.com/watch?v=", "");
-                    _context.Videos.Add(video);
-                    _context.SaveChanges();
+                    try {
+                        var url = video.VideoURL.Split('=');
+                        video.VideoURL = url[1];
+                        _context.Videos.Add(video);
+                        _context.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
             return RedirectToAction("Vlogs");

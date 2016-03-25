@@ -10,6 +10,16 @@ namespace InspirationSite.Controllers
 {
     public class BlogController : Controller
     {
+        public static String encodeBlog(string content)
+        {
+            return content;
+        }
+
+        public static String decodeBlog(string content)
+        {
+            return content;
+        }
+
         // GET: /<controller>/
         [Route("Blog")]
         public IActionResult Entries()
@@ -17,8 +27,22 @@ namespace InspirationSite.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("[Controller]/{id?}/")]
-        public IActionResult Blogid()
+        public IActionResult Blogid(int? id)
+        {
+            return View();
+        }
+
+        // GET: About/Delete/5
+        [ActionName("Delete")]
+        public IActionResult Delete(int? id)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
         {
             return View();
         }

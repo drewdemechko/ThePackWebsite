@@ -27,7 +27,7 @@
     <!-- /.row -->
     <!-- Projects Row -->
     <div class="row">
-        @foreach (var photo in Model)
+        @foreach (var photo in Model.OrderBy(photo => photo.DateAdded).Reverse()) 
         {
             <div class="col-md-3 img-portfolio">
                 <a href="portfolio-item.html">

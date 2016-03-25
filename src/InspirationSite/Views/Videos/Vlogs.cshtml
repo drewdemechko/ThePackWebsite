@@ -26,7 +26,7 @@
     </div>
     <!-- /.row -->
     <!-- Intro Content -->
-    @foreach (var video in Model)
+    @foreach (var video in Model.OrderBy(video => video.DateAdded).Reverse())
     {
     <div class="row" style="text-align:center">
             <h2>@Html.DisplayFor(modelItem => video.Title)</h2>

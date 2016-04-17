@@ -40,21 +40,17 @@ namespace InspirationSite.Controllers
 
             if (ModelState.IsValid)
             {
+                //prevent duplicates
                 var currentVideo = _context.Videos.Where(model => model.VideoURL.Equals(video.VideoURL)).FirstOrDefault();
 
                 if(currentVideo == null)
                 {
                     video.DateAdded = todaysDate;
-                    try {
-                        var url = video.VideoURL.Split('=');
-                        video.VideoURL = url[1];
-                        _context.Videos.Add(video);
-                        _context.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
+
+                    var url = video.VideoURL.Split('=');
+                    video.VideoURL = url[1];
+                    _context.Videos.Add(video);
+                    _context.SaveChanges();
                 }
             }
             return RedirectToAction("Vlogs");

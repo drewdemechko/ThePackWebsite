@@ -44,7 +44,13 @@ namespace InspirationSite.Controllers
 
             if (ModelState.IsValid)
             {
-                currentPackMember.Bio = packMember.Bio;
+                currentPackMember.Username = packMember.Username != null ? packMember.Username : currentPackMember.Username;
+                currentPackMember.Password = packMember.Password != null ? packMember.Password : currentPackMember.Password;
+                currentPackMember.Name = packMember.Name != null ? packMember.Name : currentPackMember.Name;
+                currentPackMember.ImageURL = packMember.ImageURL != null ? packMember.ImageURL : currentPackMember.ImageURL;
+                currentPackMember.FacebookURL = packMember.FacebookURL != null ? packMember.FacebookURL : currentPackMember.FacebookURL;
+                currentPackMember.TwitterURL = packMember.TwitterURL != null ? packMember.TwitterURL : currentPackMember.TwitterURL;
+                currentPackMember.Bio = packMember.Bio != null ? packMember.Bio : currentPackMember.Bio;
                 _context.SaveChanges();
                 return RedirectToAction("OurTeam");
             }
